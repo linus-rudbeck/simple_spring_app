@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/todos
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: example
+    depends_on:
+      - db
+  db:
+    image: mysql:8.2
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: todos
+    ports:
+      - "3306:3306"
